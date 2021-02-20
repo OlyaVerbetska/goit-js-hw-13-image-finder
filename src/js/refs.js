@@ -1,5 +1,7 @@
 const refs = {
-    input: document.querySelector('#search-form input'),
-  };
+  input: document.querySelector('#search-form input'),
+  gallery: document.querySelector('.gallery')
+};
+
 
 export default refs;

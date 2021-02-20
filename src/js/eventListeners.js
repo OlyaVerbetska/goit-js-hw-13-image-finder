@@ -1,15 +1,14 @@
 import debounce from 'lodash.debounce';
 import refs from './refs.js';
-// import fetchCountry from './fetchCountries.js';
-// import updateMarkup from './updateCountriesMarkup.js';
+import fetchImage from './fetchImage.js';
+import updateImageMarkup from './updateMarkup.js';
 
 refs.input.addEventListener(
   'input',
   debounce(event => {
     event.preventDefault();
-    console.log(event.target.value);
-    // const searchQuery = event.target.value;
-    // refs.container.innerHTML = '';
-    // fetchCountry(searchQuery).then(updateMarkup);
+    const searchQuery = event.target.value;
+    refs.gallery.innerHTML = '';
+    fetchImage(searchQuery).then(updateImageMarkup);
   }, 500),
 );

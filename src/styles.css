@@ -26,7 +26,51 @@ input {
   border-radius: 10px;
   border-color: blueviolet;
   outline: transparent;
-
 }
 
-.material-icons.orange600 { color: #FB8C00; }
+.material-icons.powderblue {
+  color: powderblue;
+}
+
+.stats-item {
+  display: flex;
+  text-align: center;
+  margin: 10px 0px 20px 0px;
+  /* font-size: 14px; */
+}
+.stats-item:not(:last-child) {
+  margin-right: 10px;
+}
+.gallery {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: start; */
+  box-sizing: border-box;
+}
+.gallery .item:not(:last-child) {
+  margin-right: 10px;
+}
+/* .gallery.item{
+  flex-basis: calc((100% - 3 * 10px) / 4);
+ 
+} */
+.material-icons {
+  margin-right: 10px;
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+}
+.image-thumb {
+  width: 350px;
+  height: 250px;
+  overflow: hidden;
+}
+.image {
+  display: block;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
