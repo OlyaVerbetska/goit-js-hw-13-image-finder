@@ -13,10 +13,10 @@ export default {
     const {
       data: { hits },
     } = await axios.get(query);
-    this.pageNumber+=1;
+    this.pageNumber += 1;
     return hits;
   },
-  resetPage(){
+  resetPage() {
     this.pageNumber = 1;
-  }
+  },
 };
