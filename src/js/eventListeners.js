@@ -1,14 +1,26 @@
 import debounce from 'lodash.debounce';
 import refs from './refs.js';
-import fetchImage from './fetchImage.js';
+import serviceImage from './fetchImage.js';
 import updateImageMarkup from './updateMarkup.js';
 
+// let searchQuery = '';
+// let pageNumber = 1;
+// console.log(serviceImage);
+// console.log(serviceImage.searchQuery);
+// console.log(serviceImage.pageNumber);
 refs.input.addEventListener(
   'input',
   debounce(event => {
     event.preventDefault();
-    const searchQuery = event.target.value;
+    serviceImage.searchQuery = event.target.value;
     refs.gallery.innerHTML = '';
-    fetchImage(searchQuery).then(updateImageMarkup);
+
+    serviceImage.resetPage();
+    serviceImage.fetchImage(serviceImage.searchQuery).then(updateImageMarkup);
   }, 500),
 );
+
+refs.loadBtn.addEventListener('click', () => {
+  serviceImage.fetchImage(serviceImage.searchQuery).then(updateImageMarkup);
+  
+});

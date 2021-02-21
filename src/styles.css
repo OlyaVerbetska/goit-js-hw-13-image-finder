@@ -19,13 +19,16 @@ body {
   background-image: url('./images/bg-pattern.png');
 }
 
-input {
+.search-input {
   width: 600px;
   font-size: 20px;
   padding: 15px;
   border-radius: 10px;
-  border-color: blueviolet;
+  border: 3px solid powderblue;
   outline: transparent;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .material-icons.powderblue {
@@ -45,16 +48,13 @@ input {
   list-style-type: none;
   display: flex;
   flex-wrap: wrap;
-  /* justify-content: start; */
   box-sizing: border-box;
+  margin:10px;
 }
 .gallery .item:not(:last-child) {
   margin-right: 10px;
 }
-/* .gallery.item{
-  flex-basis: calc((100% - 3 * 10px) / 4);
- 
-} */
+
 .material-icons {
   margin-right: 10px;
 }
@@ -73,4 +73,9 @@ input {
   height: 100%;
   width: 100%;
   object-fit: cover;
+}
+.load-button {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
