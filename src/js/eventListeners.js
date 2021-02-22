@@ -11,21 +11,24 @@ refs.input.addEventListener(
     refs.gallery.innerHTML = '';
     serviceImage.resetPage();
     refs.loadBtn.classList.add('is-hidden');
-    serviceImage.fetchImage().then(updateImageMarkup);
+    serviceImage.fetchImage().then(hits => {
+      updateImageMarkup(hits);
+      refs.loadBtn.classList.remove('is-hidden');
+      window.scrollTo({
+        top: document.documentElement.offsetHeight,
+        behavior: 'smooth',
+      });
+    });
+  }, 500), 
+);
+
+refs.loadBtn.addEventListener('click', () => {
+  serviceImage.fetchImage().then(hits => {
+    updateImageMarkup(hits);
     refs.loadBtn.classList.remove('is-hidden');
-    console.log(refs.image);
     window.scrollTo({
       top: document.documentElement.offsetHeight,
       behavior: 'smooth',
     });
-  }, 500),
-);
-
-refs.loadBtn.addEventListener('click', () => {
-  serviceImage.fetchImage().then(updateImageMarkup);
-  refs.loadBtn.classList.remove('is-hidden');
-  window.scrollTo({
-    top: document.documentElement.offsetHeight,
-    behavior: 'smooth',
   });
 });
