@@ -30,10 +30,7 @@ refs.input.addEventListener(
 
 refs.loadBtn.addEventListener('click', () => {
   serviceImage.fetchImage().then(hits => {
-    if (hits.length === 0) {
-      noImagesMessage();
-      return;
-    }
+
     updateImageMarkup(hits);
     refs.loadBtn.classList.remove('is-hidden');
     window.scrollTo({
