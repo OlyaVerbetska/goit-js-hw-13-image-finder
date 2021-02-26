@@ -1,24 +1,21 @@
 import refs from './refs.js';
-import serviceImage from './fetchImage.js';
+import serviceImage from './apiService.js';
 import updateImageMarkup from './updateMarkup.js';
 
 import { noImagesMessage, noMoreImagesMessage } from './notifications.js';
 
 refs.searchForm.addEventListener('submit', event => {
-
   event.preventDefault();
-  // console.log(event.target);
-  // console.log(event.currentTarget);
-  // console.log(refs.input.value.length);
   serviceImage.searchQuery = refs.input.value;
-  if (refs.input.value < 1) {
+  if (refs.input.value.length < 1) {
     return;
   }
-
   refs.gallery.innerHTML = '';
   serviceImage.resetPage();
-
+  refs.searchForm.reset();
   refs.loadBtn.classList.add('is-hidden');
+ 
+
   serviceImage.fetchImage().then(hits => {
     if (hits.length === 0) {
       noImagesMessage();
@@ -26,10 +23,7 @@ refs.searchForm.addEventListener('submit', event => {
     }
     updateImageMarkup(hits);
     refs.loadBtn.classList.remove('is-hidden');
-    window.scrollTo({
-      top: document.documentElement.offsetHeight,
-      behavior: 'smooth',
-    });
+    scrollingWindow();
   });
   // refs.searchForm.reset();
 });
@@ -42,45 +36,14 @@ refs.loadBtn.addEventListener('click', () => {
     }
     updateImageMarkup(hits);
     refs.loadBtn.classList.remove('is-hidden');
-
-    window.scrollTo({
-      top: document.documentElement.offsetHeight,
-      behavior: 'smooth',
-    });
+    scrollingWindow();
   });
 });
 
-// refs.input.addEventListener(
-//   'input',
-//   debounce(event => {
-//     event.preventDefault();
-//     serviceImage.searchQuery = event.target.value;
-//     refs.gallery.innerHTML = '';
-//     serviceImage.resetPage();
-//     refs.loadBtn.classList.add('is-hidden');
-//     serviceImage.fetchImage().then(hits => {
-//       if (hits.length === 0) {
-//         noImagesMessage();
-//         return;
-//       }
-//       updateImageMarkup(hits);
-//       refs.loadBtn.classList.remove('is-hidden');
-//       window.scrollTo({
-//         top: document.documentElement.offsetHeight,
-//         behavior: 'smooth',
-//       });
-//     });
-//   }, 500),
-// );
-
-// refs.loadBtn.addEventListener('click', () => {
-//   serviceImage.fetchImage().then(hits => {
-
-//     updateImageMarkup(hits);
-//     refs.loadBtn.classList.remove('is-hidden');
-//     window.scrollTo({
-//       top: document.documentElement.offsetHeight,
-//       behavior: 'smooth',
-//     });
-//   });
-// });
+function scrollingWindow() {
+  window.scrollTo({
+    top: document.documentElement.offsetHeight,
+    behavior: 'smooth',
+  });
+}
+// refs.searchForm.reset();
