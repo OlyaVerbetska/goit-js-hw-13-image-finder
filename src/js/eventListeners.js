@@ -8,13 +8,14 @@ refs.searchForm.addEventListener('submit', event => {
   event.preventDefault();
   serviceImage.searchQuery = refs.input.value;
   if (refs.input.value.length < 1) {
+    refs.gallery.innerHTML = '';
     return;
   }
   refs.gallery.innerHTML = '';
   serviceImage.resetPage();
-  refs.searchForm.reset();
+
   refs.loadBtn.classList.add('is-hidden');
- 
+  refs.searchForm.reset();
 
   serviceImage.fetchImage().then(hits => {
     if (hits.length === 0) {
@@ -25,7 +26,6 @@ refs.searchForm.addEventListener('submit', event => {
     refs.loadBtn.classList.remove('is-hidden');
     scrollingWindow();
   });
-  // refs.searchForm.reset();
 });
 
 refs.loadBtn.addEventListener('click', () => {
@@ -46,4 +46,3 @@ function scrollingWindow() {
     behavior: 'smooth',
   });
 }
-// refs.searchForm.reset();
