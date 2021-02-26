@@ -1,4 +1,3 @@
-import debounce from 'lodash.debounce';
 import refs from './refs.js';
 import serviceImage from './fetchImage.js';
 import updateImageMarkup from './updateMarkup.js';
@@ -6,12 +5,19 @@ import updateImageMarkup from './updateMarkup.js';
 import { noImagesMessage, noMoreImagesMessage } from './notifications.js';
 
 refs.searchForm.addEventListener('submit', event => {
+
   event.preventDefault();
   // console.log(event.target);
   // console.log(event.currentTarget);
+  // console.log(refs.input.value.length);
   serviceImage.searchQuery = refs.input.value;
+  if (refs.input.value < 1) {
+    return;
+  }
+
   refs.gallery.innerHTML = '';
   serviceImage.resetPage();
+
   refs.loadBtn.classList.add('is-hidden');
   serviceImage.fetchImage().then(hits => {
     if (hits.length === 0) {
@@ -25,6 +31,7 @@ refs.searchForm.addEventListener('submit', event => {
       behavior: 'smooth',
     });
   });
+  // refs.searchForm.reset();
 });
 
 refs.loadBtn.addEventListener('click', () => {
