@@ -7,7 +7,7 @@ import { noImagesMessage, noMoreImagesMessage } from './notifications.js';
 refs.searchForm.addEventListener('submit', event => {
   event.preventDefault();
   serviceImage.searchQuery = refs.input.value;
-  if (refs.input.value.length < 1) {
+  if (refs.searchForm.elements.query.value === '') {
     refs.gallery.innerHTML = '';
     return;
   }
